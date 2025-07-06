@@ -78,3 +78,20 @@ MyShop provides a full‑stack shopping experience where:
 - **Server‑side mode:** used for larger datasets (products, orders) to offload paging and filtering to the server.  
 - Server handlers leverage `System.Linq.Dynamic.Core` to build `IQueryable` filters on the fly.
 
+  ---
+ <img src="images/stripe.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/stripe-dashboard.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/confirmation-stripe.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/category-index.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/category-edit.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/category-delete.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/product-index.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/product-create.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/product-delete.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/cart-index.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/cart-summary.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/order-index2.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/order-details.jpg" alt="My Image" width="700"><br></br>
+ <img src="images/order-start-proccess.jpg" alt="My Image" width="700"><br></br>
+
+
