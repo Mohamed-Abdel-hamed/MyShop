@@ -19,7 +19,7 @@ MyShop provides a full‑stack shopping experience where:
 - **Admins** can create categories, upload product images, edit inventory, and track orders.  
 - **Customers** can browse products, place orders, and complete payment through Stripe Checkout.  
 - The admin panel uses **DataTables** (client‑side & server‑side) for fast, searchable product and order grids.
-
+- A **session‑based cart badge** always shows the current number of items in the customer’s cart.
 ---
 
 ## ✨ Features
