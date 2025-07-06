@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using Microsoft.AspNetCore.Mvc;
 using MyShop.Application.Services;
 using MyShop.Application.ViewModels;
-using MyShop.Entities.Repositories;
 
 namespace MyShop.Web.Areas.Admin.Controllers
 {

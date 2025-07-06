@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using MyShop.Entities.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using MyShop.Web.Helper;
-using System.Configuration;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
