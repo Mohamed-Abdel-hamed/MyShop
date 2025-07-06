@@ -1,0 +1,161 @@
+﻿@using MyShop.Entities.Consts
+@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<partial name="_ToasterMessage" />
+<div class="container mt-5">
+    <h2 class="mb-4">Order Details</h2>
+
+    <form id="OrderForm" asp-area="Admin" asp-controller="Orders" asp-action="UpdateDetails" method="post">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.Id" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.Id" class="form-control" readonly />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.OrderDate" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.OrderDate"  class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.OrderStatus" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.OrderStatus" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.TotalPrice" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.TotalPrice" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.ShippingDate" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.ShippingDate" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.ShippingDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.PaymentStatus" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.PaymentStatus" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.TrackingNumber" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.TrackingNumber" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.TrackingNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.Carrier" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.Carrier" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.Carrier" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.PaymentDate" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.PaymentDate" class="form-control" readonly />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.SessionId" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.SessionId" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.PaymentIntentId" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.PaymentIntentId" class="form-control" readonly />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.UserName" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.UserName" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.UserName" class="text-danger"></span> 
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="@Model.OrderHeaderViewModel.Address" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.Address" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.Address" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="@Model.OrderHeaderViewModel.City" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.City" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.City" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="@Model.OrderHeaderViewModel.PhoneNumber" class="form-label"></label>
+                <input asp-for="@Model.OrderHeaderViewModel.PhoneNumber" class="form-control" />
+                <span asp-validation-for="@Model.OrderHeaderViewModel.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        @if (Model.OrderHeaderViewModel.OrderStatus == OrderStatus.Approve)
+        {
+            <button  data-action="/Admin/Orders/StartProcess" type="submit" class="btn btn-success me-2">Start Proccess</button>
+        }
+        @if (Model.OrderHeaderViewModel.OrderStatus == OrderStatus.Processing)
+        {
+            <button  data-action="/Admin/Orders/StartShip" type="submit" class="btn btn-secondary me-2">Start Shipping</button>
+        }
+        @if (Model.OrderHeaderViewModel.OrderStatus == OrderStatus.Cancelled || Model.OrderHeaderViewModel.OrderStatus == OrderStatus.Refunded)
+        {
+            <button data-action="/Admin/Orders/Cancel" type="submit" class="btn btn-danger">Cancel Order</button>
+        }
+        <button type="submit" class="btn btn-primary">Submit</button>
+        @Html.AntiForgeryToken()
+    </form>
+
+    <hr class="my-5" />
+
+    <div>
+        <h4 class="mb-3">Order Summary</h4>
+        <p><strong>Status:</strong> @Model.OrderHeaderViewModel.OrderStatus</p>
+
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderDetailsViewModel)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product.Price.ToString("C")</td>
+                        <td>@item.Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-end">
+            <h5><strong>Total Price: @Model.OrderHeaderViewModel.TotalPrice.ToString("C")</strong></h5>
+        </div>
+       
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.querySelectorAll('button[data-action]').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = document.getElementById('OrderForm');
+                form.action = this.getAttribute('data-action');
+            });
+        });
+    </script>
+}

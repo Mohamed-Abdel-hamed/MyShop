@@ -1,0 +1,24 @@
+﻿@if(TempData["create"] is not null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+   <script type="text/javascript">
+        toastr["success"]("@TempData["create"]")
+   </script>
+}
+@if(TempData["update"] is not null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+   <script type="text/javascript">
+        toastr["info"]("@TempData["update"]")
+   </script>
+}
+@if(TempData["delete"] is not null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+   <script type="text/javascript">
+        toastr["error"]("@TempData["delete"]")
+   </script>
+}

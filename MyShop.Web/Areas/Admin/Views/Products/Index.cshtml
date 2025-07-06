@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Products";
+    ViewData["PageTitle"] = "Category Managment";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<partial name="_ToasterMessage" />
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table" id="product">
+    <thead>
+        <tr>
+            <th class="d-none">
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+             <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                CreatedDate
+            </th>
+            <th></th> 
+        </tr>
+    </thead>
+    <tbody>
+   </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/product.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ShoppingCartViewModel>
+@{
+    var totalPrice = Model.Sum(item => item.TotalItemsPrice);
+}
+<head>
+	<link href="~/css/shoppingcart.css" rel="stylesheet" />
+</head>
+<body>
+	<main class="page">
+		<section class="shopping-cart dark">
+			<div class="container">
+				<div class="block-heading">
+					<h2>Shopping Cart</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+				</div>
+				<div class="content">
+					<div class="row">
+						<div class="col-md-12 col-lg-8">
+							<div class="items">
+								@foreach(var item in Model)
+								{
+									<div class="product">
+										<div class="row">
+											<div class="col-md-3">
+												<img class="img-fluid mx-auto d-block image" src="@item.Product.ImageUrl">
+											</div>
+											<div class="col-md-8">
+												<div class="info">
+													<div class="row">
+														<div class="col-md-5 product-name">
+															<div class="product-name">
+																<a href="#">@item.Product.Name</a>
+																<div class="product-info">
+																	<div>Category <span class="value">@item.Product.CategoryName</span></div>
+																	<div>Description: <span class="value">@item.Product.Description</span></div>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-4 quantity">
+															<label for="quantity">Quantity:</label>
+															<div class="btn-group" role="group">
+																<a class="btn btn-primary" asp-area="Customer" asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-cardId="@item.Id">+</a>
+																<span class="m-2">@item.Count</span>
+																<a class="btn btn-primary" asp-area="Customer" asp-controller="Cart" asp-action="DecreaseQuantity" asp-route-cardId="@item.Id">-</a>
+															</div>
+														</div>
+														<div class="col-md-3 price">
+															<span>$@(item.TotalItemsPrice)</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								}
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<div class="summary">
+								<h3>Summary</h3>
+								<div class="summary-item"><span class="text">Total</span><span class="price">@totalPrice</span></div>
+								<a asp-controller="Cart" asp-action="Summary" class="btn btn-primary btn-lg btn-block">Checkout</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>

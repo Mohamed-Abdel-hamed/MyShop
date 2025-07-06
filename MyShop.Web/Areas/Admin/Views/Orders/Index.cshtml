@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+    ViewData["PageTitle"] = "Order Managment";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<partial name="_ToasterMessage" />
+
+<table class="table" id="order">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                UserName
+            </th>
+            <th>
+                PhoneNumber
+            </th>
+            <th>
+                OrderStatus
+            </th>
+            <th>
+                TotalPrice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/order.js" asp-append-version="true"></script>
+}
